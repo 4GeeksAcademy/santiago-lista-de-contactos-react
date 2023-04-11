@@ -1,17 +1,14 @@
+import rigoImage from "../../img/rigo-baby.jpg";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
+			contacts:[
+				{name:"Santiago", address:"Colombia", phone:"123-456-789", email:"example@gmail.com", img:rigoImage},
+				{name:"Santiago", address:"Colombia", phone:"123-456-789", email:"example@gmail.com", img:rigoImage},
+				{name:"Santiago", address:"Colombia", phone:"123-456-789", email:"example@gmail.com", img:rigoImage},
+				{name:"Santiago", address:"Colombia", phone:"123-456-789", email:"example@gmail.com", img:rigoImage},
+				{name:"Santiago", address:"Colombia", phone:"123-456-789", email:"example@gmail.com", img:rigoImage},
 			]
 		},
 		actions: {
