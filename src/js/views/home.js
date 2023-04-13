@@ -21,8 +21,9 @@ return (
 		address={contact.address}
 		phone={contact.phone}
 		email={contact.email}
-		img={rigoImage}/>
-		key={index}
+		img={rigoImage}
+		onDelete={()=>actions.delContact(index)}
+		key={index}/>
 		)}
 </div>
 		
