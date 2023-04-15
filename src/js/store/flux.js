@@ -22,8 +22,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let newContacts=[...getStore().contacts]
 				newContacts.splice(index,1)
 				setStore({contacts:newContacts})
-
 			},
+			editContact:(index, obj)=> {
+				console.log(index)
+				console.log(obj)
+				let store = getStore()
+				let arrTemp = [...store.contacts];
+
+				arrTemp[index] = obj;
+				setStore({...store, contacts: arrTemp});
+			}
 
 			// loadSomeData: () => {
 			// 	/**
