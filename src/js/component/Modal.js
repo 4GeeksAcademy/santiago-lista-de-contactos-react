@@ -1,25 +1,48 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Context } from "../store/appContext";
 
 export const Modal = props => {
 	const [contacName, setcontactName]=useState("")
-	const [address, setAddress]=useState("")
-	const [phone, setPhone]=useState("")
-	const [email, setEmail]=useState("")
-
+	const [address, setaddress]=useState("")
+	const [phone, setphone]=useState("")
+	const [email, setemail]=useState("")
+	const {store, actions}=useContext(Context)
 
 	useEffect (()=>{
 		if(props.index==-1){
 			//Crear nuevo contacto
 		} else if(props.index>=0){
 			//Editar contacto
+			let updateContact= store.contacts[props.index]
+			setaddress(updateContact.address)
+			setcontactName(updateContact.name)
+			setphone(updateContact.phone)
+			setemail(updateContact.email)
 		} else {
-			//Indice invalido
+			//indice invalido
 		}
 	},[])
 
+function guardar() {
+	let newContact = {
+		name: contacName,
+		email: email,
+		phone: phone,
+		address: address,
 
+	}
+	if(props.index==-1){
+		//Crear nuevo contacto
+		actions.addContact(newContact)
+	} else if(props.index>=0){
+		//Editar contacto
+		actions.updateContact(newContact, props.index)
+	} else {
+	//Indice invalido
+	}
+}
 
 	return (
 		<div className="modal fade" tabIndex ="-1" role="dialog" id={"editModal-"+props.index} aria-labelledby={"modalLabel-"+props.index} aria-hidden="true">
@@ -53,31 +76,29 @@ onChange={(e)=>setcontactName(e.target.value)}
   <label htmlFor="addressInput" className="form-label">Address</label>
   <input type="text" className="form-control" id="adrressInput" placeholder="Popayan, Colombia" 
   value={address}
-  onChange={(e)=>setAddress(e.target.value)}
+  onChange={(e)=>setaddress(e.target.value)}
    />
 </div>
 <div className="mb-3">
   <label htmlFor="phoneInput" className="form-label">Phone number</label>
   <input type="text" className="form-control" id="phoneInput" placeholder="1122334455" 
   value={phone}
-  onChange={(e)=>setPhone(e.target.value)}
+  onChange={(e)=>setphone(e.target.value)}
   />
 </div>
 <div className="mb-3">
   <label htmlFor="emailInput" className="form-label">Email address</label>
   <input type="email" className="form-control" id="emailInput" placeholder="ejemplo@4geeks.com" 
   value={email}
-  onChange={(e)=>setEmail(e.target.value)}
+  onChange={(e)=>setemail(e.target.value)}
   />
 </div>
 					</div>
 					<div className="modal-footer">
-						<button type="button" className="btn btn-primary">
-							Oh no!
+						<button data-bs-dismiss="modal" data-bs-target={"editModal-"+props.index} onClick={guardar} type="button" className="btn btn-primary">
+							Guardar
 						</button>
-						<button type="button" className="btn btn-secondary" data-dismiss="modal">
-							Do it!
-						</button>
+						
 					</div>
 				</div>
 			</div>
