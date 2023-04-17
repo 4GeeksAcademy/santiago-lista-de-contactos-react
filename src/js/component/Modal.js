@@ -3,9 +3,12 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export const Modal = props => {
-	const [state, setState] = useState({
-		//initialize state here
-	});
+	const [contacName, setcontactName]=useState("")
+	const [address, setAddress]=useState("")
+	const [phone, setPhone]=useState("")
+	const [email, setEmail]=useState("")
+
+
 	useEffect (()=>{
 		if(props.index==-1){
 			//Crear nuevo contacto
@@ -34,11 +37,39 @@ export const Modal = props => {
 								<span aria-hidden="true">&times;</span>
 							</button>
 						) : (
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						)}
 					</div>
 					<div className="modal-body">
-						<p>Warning: unknown consequences after this point... Kidding!</p>
+					<div className="mb-3">
+  <label htmlFor="nameInput" className="form-label">Full name</label>
+  <input type="text" className="form-control" id="nameInput" placeholder="Santiago Mendez" 
+  value={contacName}
+onChange={(e)=>setcontactName(e.target.value)}
+   />
+</div>
+
+<div className="mb-3">
+  <label htmlFor="addressInput" className="form-label">Address</label>
+  <input type="text" className="form-control" id="adrressInput" placeholder="Popayan, Colombia" 
+  value={address}
+  onChange={(e)=>setAddress(e.target.value)}
+   />
+</div>
+<div className="mb-3">
+  <label htmlFor="phoneInput" className="form-label">Phone number</label>
+  <input type="text" className="form-control" id="phoneInput" placeholder="1122334455" 
+  value={phone}
+  onChange={(e)=>setPhone(e.target.value)}
+  />
+</div>
+<div className="mb-3">
+  <label htmlFor="emailInput" className="form-label">Email address</label>
+  <input type="email" className="form-control" id="emailInput" placeholder="ejemplo@4geeks.com" 
+  value={email}
+  onChange={(e)=>setEmail(e.target.value)}
+  />
+</div>
 					</div>
 					<div className="modal-footer">
 						<button type="button" className="btn btn-primary">

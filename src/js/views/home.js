@@ -27,7 +27,7 @@ return (
 		onDelete={()=>actions.delContact(index)}
 		index={index}
 		/>
-		<Modal key={index}></Modal>
+		<Modal index={index}></Modal>
 		</div>
 		)}
 </div>
