@@ -31,8 +31,8 @@ function guardar() {
 		email: email,
 		phone: phone,
 		address: address,
-
 	}
+	console.log(newContact)
 	if(props.index==-1){
 		//Crear nuevo contacto
 		actions.addContact(newContact)
@@ -65,7 +65,7 @@ function guardar() {
 					</div>
 					<div className="modal-body">
 					<div className="mb-3">
-  <label htmlFor="nameInput" className="form-label">Full name</label>
+  <label htmlFor="nameInput" className="form-label">Full Name</label>
   <input type="text" className="form-control" id="nameInput" placeholder="Santiago Mendez" 
   value={contacName}
 onChange={(e)=>setcontactName(e.target.value)}
@@ -95,7 +95,7 @@ onChange={(e)=>setcontactName(e.target.value)}
 </div>
 					</div>
 					<div className="modal-footer">
-						<button data-bs-dismiss="modal" data-bs-target={"editModal-"+props.index} onClick={guardar} type="button" className="btn btn-primary">
+						<button data-bs-dismiss="modal" data-bs-target={"editModal-"+props.index} onClick={guardar()} type="button" className="btn btn-primary">
 							Guardar
 						</button>
 						

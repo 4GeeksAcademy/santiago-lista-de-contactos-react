@@ -1,5 +1,8 @@
 import rigoImage from "../../img/rigo-baby.jpg";
 
+const apiUrl=process.env.API_URL
+const agendaSlug=process.env.AGENDA_SLUG
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -15,7 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// Use getActions to call a function within a fuction
 			addContact:(contact) => {
 				let store=getStore()
-				let newContacts=[...getStore.contacts.contact]
+				let newContacts=[...store.contacts, contact]
 				setStore({contacts:newContacts})
 			},
 			delContact:(index)=>{
@@ -25,7 +28,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			updateContact:(data, index)=>{
 				let newContacts=[...getStore().contacts]
-				newContacts[index]=[...data, rigoImage]
+				newContacts[index]={...data, img: rigoImage}
 				setStore({contacts:newContacts})
 			}
 
